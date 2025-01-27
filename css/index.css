@@ -1,0 +1,92 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff;
+    font-family: MiSans, sans-serif;
+    background-image: url('../img/Wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.homebox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.logo {
+    font-family: 'Nitaifont', sans-serif;
+    font-size: 15vh;
+    background: linear-gradient(to right, #4285F4, #FFEB3B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 16vh !important;
+}
+
+.top-bar {
+    top: 0;
+}
+
+.foot-bar {
+    bottom: 0;
+}
+
+.top-bar,
+.foot-bar {
+    width: 100%;
+    height: 6%;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+li {
+    padding: 0 2vw;
+}
