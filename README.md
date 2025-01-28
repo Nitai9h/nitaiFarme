@@ -8,7 +8,7 @@
 
 ![license](https://img.shields.io/github/license/nitai9h/nitaifarme?color=FF5531)
 
-📢 网站: [在线版](https://nitaifarme.nitai.us.kg/online)
+📢 网站: [在线版](https://farme.nitai.us.kg)
 
 </div>
 
@@ -56,6 +56,7 @@ http-server -p 11123 -o
 ##### 用到的插件
 
 * [Iconfont](https://www.iconfont.cn/)
+* [js.cookie](https://github.com/js-cookie/js-cookie)
 * [JQuery](https://jquery.com/)
 * [I18n](https://github.com/fnando/i18n-js)
 

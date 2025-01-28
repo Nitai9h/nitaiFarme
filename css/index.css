@@ -1,3 +1,10 @@
+@charset "utf-8";
+
+:root {
+    --light-bar-text: #fff;
+}
+
+html,
 body {
     display: flex;
     flex-direction: column;
@@ -23,8 +30,8 @@ body {
 }
 
 .content {
-    width: 100%;
-    height: 100%;
+    width: 55%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +46,7 @@ body {
     background: linear-gradient(to right, #4285F4, #FFEB3B);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    width: 60%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -76,6 +83,7 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    color: var(--light-bar-text)
 }
 
 ul {

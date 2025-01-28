@@ -1,3 +1,9 @@
+// 保留原 console
+const oConsole = console;
+
+// 覆写 console
+console = {};
+
 // 隐藏右键菜单
 document.oncontextmenu = function (e) {
     e.preventDefault();
@@ -9,7 +15,7 @@ i18next
     .use(i18nextBrowserLanguageDetector)
     .init({
         fallbackLng: 'zh-CN',
-        debug: true,
+        debug: false,
         backend: {
             loadPath: '.././json/i18n/{{lng}}.json'
         }
