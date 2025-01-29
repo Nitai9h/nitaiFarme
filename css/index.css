@@ -12,7 +12,7 @@ body {
     margin: 0;
     background-color: #fff;
     font-family: MiSans, sans-serif;
-    background-image: url('../img/Wallpaper.jpg');
+    background-image: url('../img/Wallpaper.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -42,7 +42,7 @@ body {
 
 .logo {
     font-family: 'Nitaifont', sans-serif;
-    font-size: 15vh;
+    font-size: 7vw;
     background: linear-gradient(to right, #4285F4, #FFEB3B);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -57,7 +57,7 @@ body {
 }
 
 .logo-icon {
-    font-size: 16vh !important;
+    font-size: 8vw !important;
 }
 
 .top-bar {
@@ -87,14 +87,54 @@ body {
 }
 
 ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: space-between;
     width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 li {
     padding: 0 2vw;
+}
+
+.bar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 20%;
+    height: 100%;
+}
+
+.bar-center {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+}
+
+.bar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    width: 20%;
+    height: 100%;
 }

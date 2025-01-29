@@ -1,6 +1,25 @@
-// 检查 debug 状态
 function checkDebug() {
-    consoleNotify(Cookies.get('cookiedebug') === 'true', 'info', 'debug');
+    const isDebug = Cookies.get('cookiedebug') === 'true';
+    consoleNotify(isDebug ? 'true' : 'false', 'info', 'debug');
+}
+
+// i18n 加载与重载
+function initializeI18next() {
+    const debugMode = Cookies.get('cookiedebug') === 'true';
+    i18next
+        .use(i18nextHttpBackend)
+        .use(i18nextBrowserLanguageDetector)
+        .init({
+            fallbackLng: 'zh-CN',
+            debug: debugMode,
+            backend: {
+                loadPath: '.././json/i18n/{{lng}}.json'
+            }
+        }, function (err, t) {
+            // 更新页面内容
+            jqueryI18next.init(i18next, $);
+            $('[data-i18n]').localize();
+        });
 }
 
 // 控制台通知

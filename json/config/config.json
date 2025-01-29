@@ -1,0 +1,25 @@
+{
+    "title": "home.page-title",
+    "updateMode": "true",
+    "updateOnline": "true",
+    "addonList": {
+        "id1": {
+            "name": "NitaiFarmeGuide",
+            "update": "https://exmaple.com/NitaiFarmeGuide"
+        },
+        "id2": {
+            "name": "NitaiFarmeGuide",
+            "update": "https://exmaple.com/NitaiFarmeGuide"
+        }
+    },
+    "@title": "填写 i18n 的 key // 网站标题",
+    "@updateMode": "true/false // 自托管管理开关",
+    "@updateOnline": "https://exmaple.com/olConfig.json // 自托管管理地址,需要加上http(s)请求头",
+    "@addonList": {
+        "插件清单": "// 如果开启了自托管管理,则使用自托管文件中的插件清单",
+        "@id": {
+            "@name": "插件名 // id在打包的配置文件({$name}.json)内生成",
+            "@update": "更新地址 // 请填写目录,需要加上http(s)请求头,框架检索时会获取分别获取 js 文件 与 说明文件(目录地址/{$name}.js 与 目录地址/{$name}.json)"
+        }
+    }
+}

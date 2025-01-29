@@ -9,18 +9,10 @@ document.oncontextmenu = function (e) {
     e.preventDefault();
 }
 
-// i18n
-i18next
-    .use(i18nextHttpBackend)
-    .use(i18nextBrowserLanguageDetector)
-    .init({
-        fallbackLng: 'zh-CN',
-        debug: false,
-        backend: {
-            loadPath: '.././json/i18n/{{lng}}.json'
-        }
-    }, function (err, t) {
-        // 更新页面内容
-        jqueryI18next.init(i18next, $);
-        $('[data-i18n]').localize();
-    });
+// 加载网站标题
+document.addEventListener('DOMContentLoaded', function () {
+    updateTitleFromConfig();
+});
+
+// 加载 i18n
+initializeI18next();

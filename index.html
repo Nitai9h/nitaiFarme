@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="home.page-title">Loading...</title>
-    <link rel="icon" type="image/png" href="./favicon.png">
+    <title id="title">Loading...</title>
+    <link rel="icon" type="image/png" href="./favicon.webp">
+    <link rel="preload" href="./config/config.json" as="fetch" type="application/json" crossorigin>
     <!-- js.cookie -->
     <script src="./js/library/js.cookie.js"></script>
     <!-- jQuery -->
@@ -18,20 +19,20 @@
     <script src="./js/library/i18n/i18nextHttpBackend.min.js"></script>
     <script src="./js/library/i18n/i18nextBrowserLanguageDetector.min.js"></script>
     <!-- Basic -->
+    <script src="./js/config.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/font.css">
-    <script src="./js/index.js"></script>
     <script src="./js/library/api.js"></script>
+    <script src="./js/index.js"></script>
 </head>
 
 <body>
-    <!-- <div class="loading" id="loading">
-    </div> -->
+    <div class="loading" id="loading"></div>
     <div class="homebox" id="homebox">
         <div class="top-bar" id="top-bar">
             <ul>
                 <li class="bar-left">关于</li>
-                <!-- <li class="bar-center"></li> -->
+                <li class="bar-center">框架</li>
                 <li class="bar-right">插件商店</li>
             </ul>
         </div>
@@ -39,6 +40,8 @@
             <div class="logo" id="logo">
                 <span class="logo-icon iconfont icon-NitaiFarme_icon"></span>
                 <div data-i18n="home.page-logo"></div>
+            </div>
+            <div class="notificationContent">
             </div>
         </div>
 
