@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Loading...</title>
     <link rel="icon" type="image/png" href="./favicon.webp">
-    <link rel="preload" href="./config/config.json" as="fetch" type="application/json" crossorigin>
+    <link rel="preload" href="./json/config/config.json" as="fetch" type="application/json" crossorigin>
     <!-- js.cookie -->
     <script src="./js/library/js.cookie.js"></script>
     <!-- jQuery -->
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/font.css">
     <script src="./js/library/api.js"></script>
-    <script src="./js/index.js"></script>
 </head>
 
 <body>
@@ -31,12 +30,16 @@
     <div class="homebox" id="homebox">
         <div class="top-bar" id="top-bar">
             <ul>
-                <li class="bar-left">关于</li>
-                <li class="bar-center">框架</li>
-                <li class="bar-right">插件商店</li>
+                <li class="bar-left" id="topBar-left">
+                </li>
+                <li class="bar-center" id="topBar-center">
+                </li>
+                <li class="bar-right" id="topBar-right">
+                </li>
             </ul>
         </div>
         <div class="content" id="content">
+            <div class="wallpaper" id="wallpaper"></div>
             <div class="logo" id="logo">
                 <span class="logo-icon iconfont icon-NitaiFarme_icon"></span>
                 <div data-i18n="home.page-logo"></div>
@@ -44,22 +47,23 @@
             <div class="notificationContent">
             </div>
         </div>
-
-        <div class="foot-bar" id="foot-bar">
-            <!-- <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul> -->
+        <div class="footer-bar" id="footer-bar">
+            <ul>
+                <li class="bar-left" id="footerBar-left">
+                </li>
+                <li class="bar-center" id="footerBar-center">
+                </li>
+                <li class="bar-right" id="footerBar-right">
+                </li>
+            </ul>
         </div>
         <div class="footer" id="footer">
             <div class="footer-text" id="footer-text">
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    <!-- JS -->
+    <script src="./js/index.js"></script>
 
 </body>
 

@@ -3,17 +3,17 @@ function checkDebug() {
     consoleNotify(isDebug ? 'true' : 'false', 'info', 'debug');
 }
 
-// i18n 加载与重载
-function initializeI18next() {
+// i18n 按需加载
+function initializeI18next(url, fallbackLng = 'zh-CN') {
     const debugMode = Cookies.get('cookiedebug') === 'true';
     i18next
         .use(i18nextHttpBackend)
         .use(i18nextBrowserLanguageDetector)
         .init({
-            fallbackLng: 'zh-CN',
+            fallbackLng: `${fallbackLng}`,
             debug: debugMode,
             backend: {
-                loadPath: '.././json/i18n/{{lng}}.json'
+                loadPath: `${url}`
             }
         }, function (err, t) {
             // 更新页面内容
@@ -137,7 +137,7 @@ function updateElement(options, id) {
 function removeElement(id) {
     // 参数检查
     if (!id) {
-        consoleNotify('Parameter "id" not found', 'error', 'removeElement');
+        consoleNotify(`Parameter ${id} not found`, 'error', 'removeElement');
         return;
     }
 
@@ -152,4 +152,98 @@ function removeElement(id) {
         console.log(`Element with id "${id}" not found.`);
         consoleNotify(`Failed to remove class on "${id}"`, 'error', 'removeElement');
     }
+}
+
+// i18n 修改
+function updateElementI18n(i18n, id) {
+    // 参数检查
+    if (!id) {
+        consoleNotify(`Parameter "${id}" not found`, 'error', 'updateElementI18n');
+        return;
+    }
+    if (!i18n) {
+        consoleNotify(`Parameter "${i18n}" not found`, 'error', 'updateElementI18n');
+        return;
+    }
+
+    // 根据 Id 选中元素
+    const referenceId = document.getElementById(id);
+    if (!referenceId) {
+        consoleNotify(`Element with id "${id}" not found`, 'error', 'updateElementI18n');
+        return;
+    }
+
+    // 更新 i18n
+    referenceId.setAttribute('data-i18n', i18n);
+
+    const cookiedebug = Cookies.get('cookiedebug') === 'true';
+    if (cookiedebug) {
+        consoleNotify(`Successfully updated data-i18n on "${id}" to "${i18n}"`, 'info', 'updateElementI18n');
+    }
+}
+
+// 加载 Bar 子元素
+function loadingBarItem(barLocation, barId) {
+    const barElement = document.getElementById(barId);
+    const cookiedebug = Cookies.get('cookiedebug') === 'true';
+
+    if (!barElement) {
+        consoleNotify(`Element with id "${barId}" not found`, 'error', 'loadingBarItem');
+        return;
+    }
+
+    if (Object.keys(barLocation).length > 0) {
+
+        barElement.innerHTML = Object.values(barLocation).map(item => {
+            if (item.type && item.id && item.class) {
+                return `<${item.type} id="${item.id}" class="${item.class}" data-i18n="${item.i18n || '#'}"></${item.type}>`;
+            }
+            return '';
+        }).join('');
+
+        if (cookiedebug) {
+            consoleNotify(`Bar:"${barLocation}" was loaded successfully.`, 'info', 'loadingBarItem');
+        }
+
+    } else {
+        consoleNotify(`Invalid bar location object: ${JSON.stringify(barLocation)}`, 'warn', 'loadingBarItem');
+    }
+}
+
+// 加载/重载 Bar 栏
+function loadingBar(type = 'all') {
+    fetch('./json/config/bar.json')
+        .then(response => response.json())
+        .then(data => {
+            const topBar = data.topBar;
+            const footerBar = data.footerBar;
+
+            if (type === 'all') {
+
+                loadingBarItem(topBar.left, 'topBar-left');
+                loadingBarItem(topBar.center, 'topBar-center');
+                loadingBarItem(topBar.right, 'topBar-right');
+                loadingBarItem(footerBar.left, 'footerBar-left');
+                loadingBarItem(footerBar.center, 'footerBar-center');
+                loadingBarItem(footerBar.right, 'footerBar-right');
+
+            } else if
+                (type.startsWith('topBar.') || type.startsWith('footerBar.')) {
+
+                const [section, position] = type.split('.');
+                const barSection = section === 'topBar' ? topBar : footerBar;
+
+                if (barSection && barSection[position]) {
+                    loadingBarItem(barSection[position], `${section}-${position}`);
+                } else {
+                    consoleNotify(`Invalid bar location: ${type}`, 'error', 'loadingBar');
+                }
+
+            } else {
+                consoleNotify(`Invalid bar type: ${type}`, 'error', 'loadingBar');
+            }
+
+        })
+        .catch(error =>
+            consoleNotify('Loading bar.json failed because: ' + error, 'error', 'loadingBar'));
 }

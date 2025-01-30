@@ -1,20 +1,24 @@
 {
     "title": "home.page-title",
     "updateMode": "true",
-    "updateOnline": "true",
+    "updateUrl": "https://exmaple.com/olConfig.json",
+    "updateBar": "true",
+    "updateBarUrl": "https://exmaple.com/olBar.json",
     "addonList": {
         "id1": {
             "name": "NitaiFarmeGuide",
             "update": "https://exmaple.com/NitaiFarmeGuide"
         },
         "id2": {
-            "name": "NitaiFarmeGuide",
-            "update": "https://exmaple.com/NitaiFarmeGuide"
+            "name": "NitaiFarmeExample",
+            "update": "https://exmaple.com/NitaiFarmeExample"
         }
     },
     "@title": "填写 i18n 的 key // 网站标题",
     "@updateMode": "true/false // 自托管管理开关",
-    "@updateOnline": "https://exmaple.com/olConfig.json // 自托管管理地址,需要加上http(s)请求头",
+    "@updateUrl": "https://exmaple.com/olConfig.json // 自托管管理地址,需要加上http(s)请求头,加载失败时使用本地配置 (config.json)",
+    "@updateBar": "true/false // 顶栏/底栏 自托管管理开关",
+    "@updateBarUrl": "https://exmaple.com/olBar.json // 顶栏/底栏 自托管管理地址,需要加上http(s)请求头,加载失败时使用本地配置 (bar.json)",
     "@addonList": {
         "插件清单": "// 如果开启了自托管管理,则使用自托管文件中的插件清单",
         "@id": {

@@ -14,5 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTitleFromConfig();
 });
 
+// 加载 Bar
+loadingBar();
+
 // 加载 i18n
-initializeI18next();
+setTimeout(() => {
+    initializeI18next('.././json/i18n/{{lng}}.json');
+}, 1);

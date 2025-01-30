@@ -1,5 +1,5 @@
 function updateTitleFromConfig() {
-    fetch('./config/config.json')
+    fetch('./json/config/config.json')
         .then(response => response.json())
         .then(data => {
             // 获取 i18n 标签
