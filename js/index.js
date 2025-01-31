@@ -9,15 +9,18 @@ document.oncontextmenu = function (e) {
     e.preventDefault();
 }
 
-// 加载网站标题
+// 自托管地址
+updateUrlToCookie();
+
 document.addEventListener('DOMContentLoaded', function () {
+    // 加载网站标题
     updateTitleFromConfig();
+    // 加载 Bar
+    loadingBar();
 });
 
-// 加载 Bar
-loadingBar();
-
-// 加载 i18n
-setTimeout(() => {
+document.addEventListener('DOMContentLoaded', function () {
+    // 加载 i18n
     initializeI18next('.././json/i18n/{{lng}}.json');
-}, 1);
+});
+

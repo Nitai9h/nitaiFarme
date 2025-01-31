@@ -1,6 +1,14 @@
+// debug 检验
 function checkDebug() {
     const isDebug = Cookies.get('cookiedebug') === 'true';
     consoleNotify(isDebug ? 'true' : 'false', 'info', 'debug');
+}
+
+// 在 body 内插入 Css 样式
+function updateRootCss(options) {
+    for (const [key, value] of Object.entries(options)) {
+        document.documentElement.style.setProperty(key, value);
+    }
 }
 
 // i18n 按需加载
@@ -154,7 +162,48 @@ function removeElement(id) {
     }
 }
 
-// i18n 修改
+// 外部 CSS 样式引入
+function addCssFromUrl(url) {
+    // 创建 link
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url;
+
+    const indexJsElement = document.getElementById('index-js');
+    const cookiedebug = Cookies.get('cookiedebug') === 'true';
+
+    if (indexJsElement) {
+        indexJsElement.insertAdjacentElement('afterend', link);
+        if (cookiedebug) {
+            consoleNotify(`The CSS was loaded successfully from "${url}"`, 'info', 'addCssFromUrl');
+        }
+    } else {
+        consoleNotify(`CSS loading failed: ${url}`, 'error', 'addCssFromUrl');
+    }
+}
+
+// 外部 JS 库引入
+function addJsFromUrl(url) {
+    // 创建 script
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    const indexJsElement = document.getElementById('index-js');
+    const cookiedebug = Cookies.get('cookiedebug') === 'true';
+
+    if (indexJsElement) {
+        indexJsElement.insertAdjacentElement('afterend', script);
+        if (cookiedebug) {
+            consoleNotify(`The JS was loaded successfully from "${url}"`, 'info', 'addJsFromUrl');
+        }
+    } else {
+        consoleNotify(`JS loading failed: ${url}`, 'error', 'addJsFromUrl');
+    }
+}
+
+// i18n 标签修改
 function updateElementI18n(i18n, id) {
     // 参数检查
     if (!id) {
@@ -210,9 +259,22 @@ function loadingBarItem(barLocation, barId) {
     }
 }
 
-// 加载/重载 Bar 栏
-function loadingBar(type = 'all') {
-    fetch('./json/config/bar.json')
+// 加载/重载 边栏
+function loadingBar(type = 'all', reloadingI18n = 'true', localLoadingOnly = 'false') {
+    let fetchUrl;
+
+    if (localLoadingOnly === 'true') {
+        fetchUrl = './json/config/bar.json';
+    } else {
+        const updateBar = Cookies.get('updateBar');
+        if (updateBar === 'true') {
+            fetchUrl = Cookies.get('updateBarUrl');
+        } else {
+            fetchUrl = './json/config/bar.json';
+        }
+    }
+
+    fetch(fetchUrl)
         .then(response => response.json())
         .then(data => {
             const topBar = data.topBar;
@@ -243,7 +305,40 @@ function loadingBar(type = 'all') {
                 consoleNotify(`Invalid bar type: ${type}`, 'error', 'loadingBar');
             }
 
+            // 为空检测
+            checkBar('top-bar');
+            checkBar('footer-bar');
+
+            if (reloadingI18n === 'true') {
+                initializeI18next('.././json/i18n/{{lng}}.json');
+            }
+
         })
-        .catch(error =>
-            consoleNotify('Loading bar.json failed because: ' + error, 'error', 'loadingBar'));
+        .catch(error => {
+            if (localLoadingOnly === 'false') {
+                consoleNotify('Loading bar.json failed because: ' + error, 'warn', 'loadingBar')
+                loadingBar('all', 'true', 'true');
+            } else {
+                consoleNotify('Loading bar.json failed because: ' + error, 'error', 'loadingBar')
+                return;
+            }
+        });
+}
+
+// 检测与删除空的边栏
+function checkBar(barId) {
+
+    const barElement = document.getElementById(barId);
+    const cookiedebug = Cookies.get('cookiedebug') === 'true';
+
+    if (barElement) {
+        const hasChildren = barElement.querySelector('ul li:not(:empty)');
+        if (!hasChildren) {
+            barElement.remove();
+        } else if (cookiedebug) {
+            consoleNotify(`Bar with id "${barId}" is not empty`, 'info', 'checkBar');
+        }
+    } else {
+        consoleNotify(`Bar with id "${barId}" not found`, 'warn', 'checkBar');
+    }
 }

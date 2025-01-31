@@ -4,7 +4,7 @@
             "barLogoText": {
                 "type": "div",
                 "id": "barLogoText",
-                "class": "barLogoText",
+                "class": "barLogoText logo",
                 "i18n": "bar.logoText"
             }
         },
@@ -18,9 +18,9 @@
         },
         "right": {
             "barExample": {
-                "type": "",
-                "id": "",
-                "class": "",
+                "type": "div",
+                "id": "barSettings",
+                "class": "barSettings iconfont icon-shezhi",
                 "i18n": ""
             }
         }
