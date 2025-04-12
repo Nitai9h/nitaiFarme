@@ -1,71 +1,20 @@
 <!-- Copyright 2025 Nitai -->
 <!-- Released under the GPL-3.0 License. All rights reserved. -->
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh_CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">Loading...</title>
+    <title id="title">NitaiFarme</title>
     <link rel="icon" type="image/png" href="./favicon.webp">
-    <link rel="preload" href="./json/config/config.json" as="fetch" type="application/json" crossorigin>
-    <!-- js.cookie -->
-    <script src="./js/library/js.cookie.js"></script>
-    <!-- jQuery -->
-    <script src="./js/library/jquery-3.6.0.min.js"></script>
-    <!-- i18n -->
-    <script src="./js/library/i18n/i18next.min.js"></script>
-    <script src="./js/library/i18n/jquery-i18next.js"></script>
-    <script src="./js/library/i18n/i18nextHttpBackend.min.js"></script>
-    <script src="./js/library/i18n/i18nextBrowserLanguageDetector.min.js"></script>
-    <!-- Basic -->
-    <script src="./js/config.js"></script>
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/font.css">
-    <script src="./js/library/api.js"></script>
+    <link rel="stylesheet" href="./js/api.js">
 </head>
-
 <body>
-    <div class="loading" id="loading"></div>
-    <div class="homebox" id="homebox">
-        <div class="top-bar" id="top-bar">
-            <ul>
-                <li class="bar-left" id="topBar-left">
-                </li>
-                <li class="bar-center" id="topBar-center">
-                </li>
-                <li class="bar-right" id="topBar-right">
-                </li>
-            </ul>
-        </div>
-        <div class="content" id="content">
-            <div class="wallpaper" id="wallpaper"></div>
-            <div class="logo" id="logo">
-                <span class="logo-icon iconfont icon-NitaiFarme_icon"></span>
-                <div data-i18n="home.page-logo"></div>
-            </div>
-            <div class="notificationContent">
-            </div>
-        </div>
-        <div class="footer-bar" id="footer-bar">
-            <ul>
-                <li class="bar-left" id="footerBar-left">
-                </li>
-                <li class="bar-center" id="footerBar-center">
-                </li>
-                <li class="bar-right" id="footerBar-right">
-                </li>
-            </ul>
-        </div>
-        <div class="footer" id="footer">
-            <div class="footer-text" id="footer-text">
-            </div>
-        </div>
+    <div class="logo">
+        <span>NitaiFarme</span>
     </div>
-
-    <extra id="index-js"></extra>
-    <script src="./js/index.js"></script>
-
 </body>
 
 </html>
