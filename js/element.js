@@ -2,7 +2,7 @@
 function createElement(options, id, type = 'div') {
     // 参数检查
     if (!id) {
-        consoleNotify('Parameter "id" not found', 'error', 'createElement');
+        nitaiFarme.log('createElement', `Parameter ${id} not found`, 'warn');
         return;
     }
 
@@ -13,7 +13,7 @@ function createElement(options, id, type = 'div') {
     if (options.classes && Array.isArray(options.classes)) {
         typeElement.classList.add(...options.classes);
     } else {
-        consoleNotify('Option "classes" not found or not an array', 'error', 'createElement');
+        nitaiFarme.log('createElement', `Option ${options.classes} not found or not an array`, 'error');
         return;
     }
 
@@ -28,7 +28,7 @@ function createElement(options, id, type = 'div') {
     // 被插入 Id 寻找
     const referenceId = document.getElementById(id);
     if (!referenceId) {
-        consoleNotify(`Element with id "${id}" not found`, 'error', 'createElement');
+        nitaiFarme.log('createElement', `Reference element with id "${id}" not found`, 'warn');
         return;
     }
 
@@ -36,7 +36,7 @@ function createElement(options, id, type = 'div') {
     referenceId.insertAdjacentElement('afterend', typeElement);
     const cookiedebug = Cookies.get('cookiedebug') === 'true';
     if (cookiedebug) {
-        consoleNotify(`Element with id "${options.id}" created`, 'info', 'createElement');
+        nitaiFarme.log('createElement', `Element with id "${options.id}" created`, 'info');
     }
 
     return typeElement;
@@ -46,14 +46,14 @@ function createElement(options, id, type = 'div') {
 function updateElement(options, id) {
     // 参数检查
     if (!id) {
-        consoleNotify('Parameter "id" not found', 'error', 'updateElement');
+        nitaiFarme.log('updateElement', `Parameter ${id} not found`, 'warn');
         return;
     }
 
     // 根据 Id 选中元素
     const referenceId = document.getElementById(id);
     if (!referenceId) {
-        consoleNotify(`Element with id "${id}" not found`, 'error', 'updateElement');
+        nitaiFarme.log('updateElement', `Reference element with id "${id}" not found`, 'warn');
         return;
     }
 
@@ -63,20 +63,20 @@ function updateElement(options, id) {
     if (options.addClass) {
         referenceId.classList.add(...options.addClass);
         if (cookiedebug) {
-            consoleNotify(`Successfully added class on "${id}"`, 'info', 'updateElement');
+            nitaiFarme.log('updateElement', `Successfully added class on "${id}"`, 'info');
         }
     } else {
-        consoleNotify(`Failed to add class on "${id}"`, 'error', 'updateElement');
+        nitaiFarme.log('updateElement', `No class to add on "${id}"`, 'error');
     }
 
     // 删除 Class
     if (options.removeClass) {
         referenceId.classList.remove(...options.removeClass);
         if (cookiedebug) {
-            consoleNotify(`Successfully removed class on "${id}"`, 'info', 'updateElement');
+            nitaiFarme.log('updateElement', `Successfully removed class on "${id}"`, 'info');
         }
     } else {
-        consoleNotify(`Failed to remove class on "${id}"`, 'error', 'updateElement');
+        nitaiFarme.log('updateElement', `No class to remove on "${id}"`, 'error');
     }
 }
 
@@ -84,7 +84,7 @@ function updateElement(options, id) {
 function removeElement(id) {
     // 参数检查
     if (!id) {
-        consoleNotify(`Parameter ${id} not found`, 'error', 'removeElement');
+        nitaiFarme.log('removeElement', `Parameter ${id} not found`, 'error');
         return;
     }
 
@@ -93,10 +93,9 @@ function removeElement(id) {
     if (referenceId) {
         referenceId.parentNode.removeChild(referenceId);
         if (cookiedebug) {
-            consoleNotify(`Successfully deleted the element with id="${id}".`, 'info', 'removeElement');
+            nitaiFarme.log('removeElement', `Successfully removed element with id="${id}"`, 'info');
         }
     } else {
-        console.log(`Element with id "${id}" not found.`);
-        consoleNotify(`Failed to remove class on "${id}"`, 'error', 'removeElement');
+        nitaiFarme.log('removeElement', `Element with id "${id}" not found`, 'error');
     }
 }

@@ -1,47 +1,35 @@
+// Cookie 检验
+function checkCookie(cookieName) {
+    var cookies = document.cookie.split("; ");
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].split("=");
+        if (cookie[0] === cookieName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // debug 检验
 function checkDebug() {
-    const isDebug = Cookies.get('cookiedebug') === 'true';
-    consoleNotify(isDebug ? 'true' : 'false', 'info', 'debug');
-}
+    var cookieExists = checkCookie('cookiedebug');
 
-// 控制台通知
-function consoleNotify(message, level = 'info', subject = 'unknown') {
-    // 参数检查
-    if (!message) {
-        consoleNotify('Parameter "message" not found', 'error', 'consoleNotify');
-        return;
-    }
-
-    // 格式化
-    message = `NitaiFarme: ${message}
-    [${subject}]`;
-
-    // 输出
-    switch (level) {
-        case 'info':
-            oConsole.info(message);
-            break;
-        case 'warn':
-            oConsole.warn(message);
-            break;
-        case 'error':
-            oConsole.error(message);
-            break;
-        default:
-            oConsole.log(message);
-            break;
+    if (cookieExists) {
+        const isDebug = Cookies.get('cookiedebug') === 'true';
+        nitaiFarme.log('checkDebug', isDebug ? 'true' : 'false', isDebug ? 'info' : 'info');
+    } else {
+        nitaiFarme.log('checkDebug', 'cookiedebug not found', 'error');
     }
 }
+
 
 // 初始化数据库
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        await initializeNppDB();
-        console.log('数据库初始化成功');
-        loadNpp();
+        await nppStore.initializaNppDB();
+        nitaiFarme.log('initializaNppDB', 'The database initialization is successful', 'info');
+        nppStore.loadNpp();
     } catch (error) {
-        console.error('数据库初始化失败:', error);
-        showErrorDialog(`初始化失败: ${error.message}`);
+        nitaiFarme.log('initializaNppDB', `The database initialization failed: ${error.message}`, 'error');
     }
 });
-

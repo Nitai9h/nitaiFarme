@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./favicon.png" width="150" height="150" />
+<img src="./favicon.webp" width="150" height="150" />
 
 # 拟态框架
 
@@ -8,7 +8,7 @@
 
 ![license](https://img.shields.io/github/license/nitai9h/nitaifarme?color=FF5531)
 
-📢 网站: [在线版](https://farme.nitai.us.kg)
+📢 网站: [在线网页](https://farme.nitai.us.kg)
 
 </div>
 
@@ -53,10 +53,6 @@ http-server -p 11123 -o
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/Nitai9h/nitaifarme)
 
-##### 用到的插件
+##### 用到的库
 
-* [Iconfont](https://www.iconfont.cn/)
-* [js.cookie](https://github.com/js-cookie/js-cookie)
-* [JQuery](https://jquery.com/)
-* [I18n](https://github.com/fnando/i18n-js)
-
+* [color-thief](https://lokeshdhakar.com/projects/color-thief/)
