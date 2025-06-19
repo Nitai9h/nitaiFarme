@@ -4,10 +4,18 @@ function checkCookie(cookieName) {
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].split("=");
         if (cookie[0] === cookieName) {
-            return true;
+            nitaiFarme.log('checkCookie', `Cookie ${cookieName} found`, 'info');
         }
     }
-    return false;
+    nitaiFarme.log('checkCookie', `Cookie ${cookieName} not found`, 'warn');
+}
+
+// 获取 Cookie 值
+function getCookie(name) {
+
+    checkCookie(name);
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
 }
 
 // debug 检验
@@ -21,7 +29,6 @@ function checkDebug() {
         nitaiFarme.log('checkDebug', 'cookiedebug not found', 'error');
     }
 }
-
 
 // 初始化数据库
 window.addEventListener('DOMContentLoaded', async () => {

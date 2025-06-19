@@ -48,3 +48,41 @@ body {
     background-clip: text;
     color: transparent;
 }
+
+.fade-in {
+    opacity: 1;
+    transition: opacity var(--fade-duration, 1s);
+}
+
+.fade-in.show {
+    opacity: 0;
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity var(--fade-duration, 1s);
+}
+
+.fade-out.hide {
+    opacity: 1;
+}
+
+.skeleton {
+    background: #c1c1c1;
+    background-image: linear-gradient(to right, #f0f0f0 0%, #e0e0e0 75%, #f0f0f0 100%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 2s infinite ease-in-out;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
