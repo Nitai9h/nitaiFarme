@@ -1,13 +1,12 @@
 // Cookie 检验
 function checkCookie(cookieName) {
-    var cookies = document.cookie.split("; ");
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].split("=");
-        if (cookie[0] === cookieName) {
-            nitaiFarme.log('checkCookie', `Cookie ${cookieName} found`, 'info');
-        }
+    const value = Cookies.get(cookieName);
+    if (value) {
+        nitaiFarme.log('checkCookie', `Cookie ${cookieName} found`, 'info');
+        return true;
     }
     nitaiFarme.log('checkCookie', `Cookie ${cookieName} not found`, 'warn');
+    return false;
 }
 
 // 获取 Cookie 值

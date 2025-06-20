@@ -55,4 +55,5 @@ http-server -p 11123 -o
 
 ##### 用到的库
 
+* [js-cookie](https://github.com/js-cookie/js-cookie)
 * [color-thief](https://lokeshdhakar.com/projects/color-thief/)
